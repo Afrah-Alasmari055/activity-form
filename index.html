@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>استبانة أولياء الأمور — الابتدائية الثانية بالقاعدة الجوية</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 1. شاشة الترحيب (تظهر لمدة 5 ثوانٍ) -->
+  <div id="welcome-screen" class="welcome-overlay">
+    <div class="welcome-card">
+      <div class="welcome-badge">
+        <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="welcome-school">المدرسة الابتدائية الثانية بالقاعدة الجوية</span>
+      <h1 class="welcome-title">استبانة أولياء الأمور القبلية<br>للأنشطة الطلابية</h1>
+      <div class="welcome-divider"></div>
+      <p class="welcome-desc">
+        مرحباً بكم.. مشاركتكم الكريمة شريك أساسي في بناء برامج وأنشطة تثري مسيرة بناتنا وتنمي مواهبهن وقيمهن.
+      </p>
+
+      <div class="welcome-timer-box">
+        <div class="timer-header">
+          <span>ينتقل للاستبانة تلقائياً خلال</span>
+          <strong id="countdown-num">5</strong>
+          <span>ثوانٍ</span>
+        </div>
+        <div class="timer-track">
+          <div id="welcome-progress" class="timer-fill"></div>
+        </div>
+      </div>
+
+      <button type="button" id="skip-welcome-btn" class="skip-btn">
+        البدء بتعبئة الاستبانة الآن
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 2. الشريط العلوي الذكي (نسبة الإنجاز + الوضع الليلي) -->
+  <header class="top- sticky-bar" id="sticky-bar">
+    <div class="sticky-inner">
+      <div class="progress-info">
+        <span class="progress-label">نسبة إكمال الاستبانة</span>
+        <span class="progress-percent" id="progress-text">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-bar" id="form-progress-bar"></div>
+      </div>
+      <button type="button" id="theme-toggle" class="theme-btn" aria-label="تبديل المظهر">
+        <span id="theme-icon">🌙</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 3. محتوى الاستبانة الرئيسي -->
+  <main class="wrapper" id="main-content">
+
+    <!-- ترويسة الاستبانة -->
+    <div class="header-card">
+      <div class="header-pattern"></div>
+      <div class="school-tag">المدرسة الابتدائية الثانية بالقاعدة الجوية</div>
+      <h1 class="header-title">استبانة أولياء الأمور القبلية<br>للأنشطة الطلابية</h1>
+      <div class="gold-bar"></div>
+      <div class="header-obj">
+        <strong>الهدف:</strong> التعرف على آراء أولياء الأمور واحتياجاتهم وتوقعاتهم بشأن الأنشطة الطلابية؛ للاستفادة منها في التخطيط للبرامج والفعاليات التي تسهم في تنمية شخصية الطالبة ومهاراتها وقيمها.<br><br>
+        نأمل منكم التكرم بالإجابة عن فقرات الاستبانة بكل موضوعية، علمًا بأن النتائج ستُستخدم لأغراض التطوير والتحسين.
+      </div>
+    </div>
+
+    <div class="req-banner" id="req-banner">
+      <span class="req-dot">*</span> جميع الأسئلة المُشار إليها بنجمة إجبارية لإتمام الإرسال
+    </div>
+
+    <form id="survey-form" novalidate>
+
+      <!-- أولًا: البيانات الأولية -->
+      <section class="section-card">
+        <div class="section-header">
+          <span class="sec-icon">🎓</span>
+          <span>أولًا: البيانات الأولية</span>
+        </div>
+        <div class="section-body">
+          <div class="question-block" id="grade-block">
+            <label class="field-label">الصف الدراسي للطالبة <span class="req">*</span></label>
+            <div class="pill-group" id="grade-grp">
+              <div class="pill-opt"><input type="radio" name="grade" id="g1" value="الأول الابتدائي"><label for="g1">الأول الابتدائي</label></div>
+              <div class="pill-opt"><input type="radio" name="grade" id="g2" value="الثاني الابتدائي"><label for="g2">الثاني الابتدائي</label></div>
+              <div class="pill-opt"><input type="radio" name="grade" id="g3" value="الثالث الابتدائي"><label for="g3">الثالث الابتدائي</label></div>
+              <div class="pill-opt"><input type="radio" name="grade" id="g4" value="الرابع الابتدائي"><label for="g4">الرابع الابتدائي</label></div>
+              <div class="pill-opt"><input type="radio" name="grade" id="g5" value="الخامس الابتدائي"><label for="g5">الخامس الابتدائي</label></div>
+              <div class="pill-opt"><input type="radio" name="grade" id="g6" value="السادس الابتدائي"><label for="g6">السادس الابتدائي</label></div>
+            </div>
+            <div class="error-msg" id="grade-err">يرجى اختيار الصف الدراسي</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ثانيًا: المشاركة السابقة -->
+      <section class="section-card">
+        <div class="section-header">
+          <span class="sec-icon">🌟</span>
+          <span>ثانيًا: المشاركة السابقة</span>
+        </div>
+        <div class="section-body">
+          <div class="question-block" id="prev-block">
+            <label class="field-label">هل سبق لابنتك المشاركة في الأنشطة الطلابية؟ <span class="req">*</span></label>
+            <div class="pill-group yes-no-group" id="prev-grp">
+              <div class="pill-opt"><input type="radio" name="prev" id="prev-yes" value="نعم"><label for="prev-yes">نعم، سبق لها المشاركة</label></div>
+              <div class="pill-opt"><input type="radio" name="prev" id="prev-no" value="لا"><label for="prev-no">لا، لم يسبق لها</label></div>
+            </div>
+            <div class="error-msg" id="prev-err">يرجى اختيار إجابة</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ثالثًا: عبارات التقييم -->
+      <section class="section-card">
+        <div class="section-header">
+          <span class="sec-icon">📋</span>
+          <span>ثالثًا: عبارات التقييم</span>
+        </div>
+        <div class="section-body">
+
+          <div class="stmt-row" data-q="q1">
+            <div class="stmt-text"><span class="stmt-num">١</span><span>تسهم الأنشطة الطلابية في تنمية شخصية ابنتي وتعزيز ثقتها بنفسها. <span class="req">*</span></span></div>
+            <div class="opts-row">
+              <div class="opt agree"><input type="radio" name="q1" id="q1a" value="موافق"><label for="q1a">✓ موافق</label></div>
+              <div class="opt neutral"><input type="radio" name="q1" id="q1b" value="محايد"><label for="q1b">— محايد</label></div>
+              <div class="opt disagree"><input type="radio" name="q1" id="q1c" value="غير موافق"><label for="q1c">✕ غير موافق</label></div>
+            </div>
+            <div class="error-msg" id="q1-err">يرجى اختيار إجابة لهذه العبارة</div>
+          </div>
+
+          <div class="stmt-row" data-q="q2">
+            <div class="stmt-text"><span class="stmt-num">٢</span><span>أرغب في مشاركة ابنتي في البرامج والفعاليات المدرسية. <span class="req">*</span></span></div>
+            <div class="opts-row">
+              <div class="opt agree"><input type="radio" name="q2" id="q2a" value="موافق"><label for="q2a">✓ موافق</label></div>
+              <div class="opt neutral"><input type="radio" name="q2" id="q2b" value="محايد"><label for="q2b">— محايد</label></div>
+              <div class="opt disagree"><input type="radio" name="q2" id="q2c" value="غير موافق"><label for="q2c">✕ غير موافق</label></div>
+            </div>
+            <div class="error-msg" id="q2-err">يرجى اختيار إجابة لهذه العبارة</div>
+          </div>
+
+          <div class="stmt-row" data-q="q3">
+            <div class="stmt-text"><span class="stmt-num">٣</span><span>الأنشطة مهمة لبناء مهارات التواصل والعمل الجماعي لدى الطالبات. <span class="req">*</span></span></div>
+            <div class="opts-row">
+              <div class="opt agree"><input type="radio" name="q3" id="q3a" value="موافق"><label for="q3a">✓ موافق</label></div>
+              <div class="opt neutral"><input type="radio" name="q3" id="q3b" value="محايد"><label for="q3b">— محايد</label></div>
+              <div class="opt disagree"><input type="radio" name="q3" id="q3c" value="غير موافق"><label for="q3c">✕ غير موافق</label></div>
+            </div>
+            <div class="error-msg" id="q3-err">يرجى اختيار إجابة لهذه العبارة</div>
+          </div>
+
+          <div class="stmt-row" data-q="q4">
+            <div class="stmt-text"><span class="stmt-num">٤</span><span>أتطلع إلى برامج تكتشف مواهب ابنتي وتنمي إبداعها. <span class="req">*</span></span></div>
+            <div class="opts-row">
+              <div class="opt agree"><input type="radio" name="q4" id="q4a" value="موافق"><label for="q4a">✓ موافق</label></div>
+              <div class="opt neutral"><input type="radio" name="q4" id="q4b" value="محايد"><label for="q4b">— محايد</label></div>
+              <div class="opt disagree"><input type="radio" name="q4" id="q4c" value="غير موافق"><label for="q4c">✕ غير موافق</label></div>
+            </div>
+            <div class="error-msg" id="q4-err">يرجى اختيار إجابة لهذه العبارة</div>
+          </div>
+
+          <div class="stmt-row" data-q="q5">
+            <div class="stmt-text"><span class="stmt-num">٥</span><span>البرامج التي تعزز القيم الإسلامية والهوية الوطنية مهمة لأبنائنا. <span class="req">*</span></span></div>
+            <div class="opts-row">
+              <div class="opt agree"><input type="radio" name="q5" id="q5a" value="موافق"><label for="q5a">✓ موافق</label></div>
+              <div class="opt neutral"><input type="radio" name="q5" id="q5b" value="محايد"><label for="q5b">— محايد</label></div>
+              <div class="opt disagree"><input type="radio" name="q5" id="q5c" value="غير موافق"><label for="q5c">✕ غير موافق</label></div>
+            </div>
+            <div class="error-msg" id="q5-err">يرجى اختيار إجابة لهذه العبارة</div>
+          </div>
+
+          <div class="stmt-row" data-q="q6">
+            <div class="stmt-text"><span class="stmt-num">٦</span><span>أؤيد البرامج العلمية والتقنية التي تبني مهارات التفكير والابتكار. <span class="req">*</span></span></div>
+            <div class="opts-row">
+              <div class="opt agree"><input type="radio" name="q6" id="q6a" value="موافق"><label for="q6a">✓ موافق</label></div>
+              <div class="opt neutral"><input type="radio" name="q6" id="q6b" value="محايد"><label for="q6b">— محايد</label></div>
+              <div class="opt disagree"><input type="radio" name="q6" id="q6c" value="غير موافق"><label for="q6c">✕ غير موافق</label></div>
+            </div>
+            <div class="error-msg" id="q6-err">يرجى اختيار إجابة لهذه العبارة</div>
+          </div>
+
+          <div class="stmt-row" data-q="q7">
+            <div class="stmt-text"><span class="stmt-num">٧</span><span>الأنشطة الرياضية والصحية تعزز نمط الحياة الصحي لدى الطالبات. <span class="req">*</span></span></div>
+            <div class="opts-row">
+              <div class="opt agree"><input type="radio" name="q7" id="q7a" value="موافق"><label for="q7a">✓ موافق</label></div>
+              <div class="opt neutral"><input type="radio" name="q7" id="q7b" value="محايد"><label for="q7b">— محايد</label></div>
+              <div class="opt disagree"><input type="radio" name="q7" id="q7c" value="غير موافق"><label for="q7c">✕ غير موافق</label></div>
+            </div>
+            <div class="error-msg" id="q7-err">يرجى اختيار إجابة لهذه العبارة</div>
+          </div>
+
+          <div class="stmt-row" data-q="q8">
+            <div class="stmt-text"><span class="stmt-num">٨</span><span>أرغب في إتاحة الفرص للطالبات في الأنشطة الثقافية والفنية والكشفية. <span class="req">*</span></span></div>
+            <div class="opts-row">
+              <div class="opt agree"><input type="radio" name="q8" id="q8a" value="موافق"><label for="q8a">✓ موافق</label></div>
+              <div class="opt neutral"><input type="radio" name="q8" id="q8b" value="محايد"><label for="q8b">— محايد</label></div>
+              <div class="opt disagree"><input type="radio" name="q8" id="q8c" value="غير موافق"><label for="q8c">✕ غير موافق</label></div>
+            </div>
+            <div class="error-msg" id="q8-err">يرجى اختيار إجابة لهذه العبارة</div>
+          </div>
+
+          <div class="stmt-row" data-q="q9">
+            <div class="stmt-text"><span class="stmt-num">٩</span><span>أفضل الإبلاغ المسبق بالبرامج والمواعيد ومتطلبات المشاركة. <span class="req">*</span></span></div>
+            <div class="opts-row">
+              <div class="opt agree"><input type="radio" name="q9" id="q9a" value="موافق"><label for="q9a">✓ موافق</label></div>
+              <div class="opt neutral"><input type="radio" name="q9" id="q9b" value="محايد"><label for="q9b">— محايد</label></div>
+              <div class="opt disagree"><input type="radio" name="q9" id="q9c" value="غير موافق"><label for="q9c">✕ غير موافق</label></div>
+            </div>
+            <div class="error-msg" id="q9-err">يرجى اختيار إجابة لهذه العبارة</div>
+          </div>
+
+          <div class="stmt-row" data-q="q10">
+            <div class="stmt-text"><span class="stmt-num">١٠</span><span>أرغب في المشاركة في المبادرات والفعاليات التي تُنظمها المدرسة مع أسر الطالبات. <span class="req">*</span></span></div>
+            <div class="opts-row">
+              <div class="opt agree"><input type="radio" name="q10" id="q10a" value="موافق"><label for="q10a">✓ موافق</label></div>
+              <div class="opt neutral"><input type="radio" name="q10" id="q10b" value="محايد"><label for="q10b">— محايد</label></div>
+              <div class="opt disagree"><input type="radio" name="q10" id="q10c" value="غير موافق"><label for="q10c">✕ غير موافق</label></div>
+            </div>
+            <div class="error-msg" id="q10-err">يرجى اختيار إجابة لهذه العبارة</div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- رابعًا: المجالات المفضلة -->
+      <section class="section-card">
+        <div class="section-header">
+          <span class="sec-icon">🎯</span>
+          <span>رابعًا: المجالات المفضلة</span>
+        </div>
+        <div class="section-body">
+          <div class="question-block" id="areas-block">
+            <label class="field-label">اختاري أكثر من مجال تفضلين مشاركة ابنتك فيه: <span class="req">*</span></label>
+            <div class="check-grid" id="areas-grp">
+              <div class="chk-opt"><input type="checkbox" name="areas" id="a1" value="المواطنة ومهارات الحياة"><label for="a1"><span class="chk-emoji">🇸🇦</span><span>المواطنة ومهارات الحياة</span></label></div>
+              <div class="chk-opt"><input type="checkbox" name="areas" id="a2" value="العلوم والتقنية"><label for="a2"><span class="chk-emoji">🔬</span><span>العلوم والتقنية</span></label></div>
+              <div class="chk-opt"><input type="checkbox" name="areas" id="a3" value="الفنون والثقافة"><label for="a3"><span class="chk-emoji">🎨</span><span>الفنون والثقافة</span></label></div>
+              <div class="chk-opt"><input type="checkbox" name="areas" id="a4" value="الرياضة والصحة"><label for="a4"><span class="chk-emoji">🏃‍♀️</span><span>الرياضة والصحة</span></label></div>
+              <div class="chk-opt"><input type="checkbox" name="areas" id="a5" value="الكشافة"><label for="a5"><span class="chk-emoji">⛺</span><span>الكشافة</span></label></div>
+              <div class="chk-opt"><input type="checkbox" name="areas" id="a6" value="الأيام والمناسبات"><label for="a6"><span class="chk-emoji">📅</span><span>الأيام والمناسبات</span></label></div>
+            </div>
+            <div class="error-msg" id="areas-err">يرجى اختيار مجال واحد على الأقل</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- خامسًا: المقترحات -->
+      <section class="section-card">
+        <div class="section-header">
+          <span class="sec-icon">💡</span>
+          <span>خامسًا: المقترحات والرؤى</span>
+        </div>
+        <div class="section-body">
+          <div>
+            <label class="field-label" for="suggestions">
+              ما الأنشطة أو البرامج أو المبادرات التي تقترحون تنفيذها ضمن الأنشطة الطلابية، بما يسهم في تنمية مهارات بناتنا واكتشاف مواهبهن وتعزيز مشاركتهن في الحياة المدرسية؟
+            </label>
+            <textarea id="suggestions" name="suggestions" placeholder="اكتبوا مقترحاتكم وتطلعاتكم هنا (اختياري)..."></textarea>
+          </div>
+        </div>
+      </section>
+
+      <button type="submit" class="submit-btn" id="submit-btn">
+        <span class="btn-text">إرسال الاستبانة</span>
+        <span class="btn-loader" hidden></span>
+      </button>
+
+    </form>
+
+    <!-- 4. شاشة الشكر بعد الإرسال -->
+    <div class="success-screen" id="success-screen" hidden>
+      <div class="success-icon-wrap">
+        <svg class="checkmark-svg" viewBox="0 0 52 52">
+          <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+          <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+        </svg>
+      </div>
+      <h2 class="success-title">شكرًا لمشاركتكم الفعّالة!</h2>
+      <p class="success-sub">
+        تم استلام إجاباتكم وحفظها بنجاح. مساهمتكم الكريمة ستكون ركيزة أساسية في تطوير برامج وأنشطة طلابية تثري مسيرة بناتنا في المدرسة الابتدائية الثانية بالقاعدة الجوية.
+      </p>
+      <div class="success-meta" id="submission-time"></div>
+    </div>
+
+    <!-- التذييل (إدارة المدرسة والنشاط) -->
+    <footer class="footer-card">
+      <div class="footer-person">
+        <span class="footer-role">رائدة النشاط</span>
+        <span class="footer-name">أفراح حسن الأسمري</span>
+      </div>
+      <div class="footer-div"></div>
+      <div class="footer-person footer-left">
+        <span class="footer-role">مديرة المدرسة</span>
+        <span class="footer-name">سميرة نشاء العصيمي</span>
+      </div>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
